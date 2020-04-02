@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Language" content="pl" />
+  <link rel="stylesheet" href="/assets/style.css" type="text/css" />
+  <title>{{ site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <style>
+
+body, html {
+  height: 100%;
+}
+
+</style>
+</head>
+
+<body class="w3-theme-dark">
+<div class="bgimg-1">
+<div class="w3-display-middle" style="white-space:normal;">
+    <span class="w3-center w3-padding-large w3-xxxlarge w3-wide w3-opacity-off w3-text-light-grey"><p><b>Towarzystwo Bonsai</b></p></span>
+  </div>
+<div class=" w3-dropdown-content w3-bar-block w3-theme-dark" style="display:none" id="mySidebar">
+  <button onclick="w3_close()" class="w3-bar-item w3-large">Zamknij &times;</button>
+<a href="/index.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark"><b>Główna</b></a>
+  <a href="/about.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark"><b>O nas</b></a>
+  <a href="/spotkania.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark"><b>Spotkania</b></a>
+  <a href="/wydarzenia.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark"><b>Wydarzenia</b></a>
+  <a href="/kontakt.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark"><b>Kontakt</b></a>
+</div></div>  
+
+
+<div class="w3-display-container w3-theme">
+<div class="w3-theme-action" style="position:fixed;top:0;width: 100%">
+<div class="w3-hide-medium w3-hide-large">
+  <button class="w3-button w3-theme-action" onclick="w3_open()">☰</button>
+  <b>{{ site.name }}</b>
+  </div>
+  
+  <div class="w3-bar w3-hide-small">
+  <a href="/index.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark" style="width:20%"><b>Główna</b></a>
+  <a href="/about.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark" style="width:20%"><b>O nas</b></a>
+  <a href="/spotkania.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark" style="width:20%"><b>Spotkania</b></a>
+  <a href="/wydarzenia.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark" style="width:20%"><b>Wydarzenia</b></a>
+  <a href="/kontakt.html" class="w3-bar-item w3-button w3-theme-action  w3-hover-theme-dark" style="width:20%"><b>Kontakt</b></a>
+  </div>
+  
+ </div>
+
+</div>
+	 
+	
+  <div class="w3-cell-row w3-card-2 w3-padding w3-layout-middle">
+	<div class="w3-cell-row  w3-padding w3-layout-middle">
+	<div class="w3-container w3-card-2 w3-cell w3-threequarter w3-round">
+     {{ content }}
+	 </div>
+	 <div class="w3-container w3-quarter w3-cell">
+	 {% include sidebar.html %}
+	 </div>
+	 </div>
+	 </div>
+	 <script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
+</html>

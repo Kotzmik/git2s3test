@@ -1,0 +1,9 @@
+<h2>Wszystkie posty</h2>
+
+<ul class="w3-ul">
+  {% for post in site.posts %}
+    <li class="w3-padding w3-border-0">
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
