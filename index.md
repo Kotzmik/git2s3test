@@ -3,10 +3,10 @@ title: Strona Główna
 layout: default
 ---
 
-<!-- # {{ page.title }}
+# {{ page.title }}
 
 Conasdasdasdasdin [Markdown](https://learnxinyminutes.com/docs/markdown/). Plain text format allows you to focus on your **content**.
-SPRAWDŹ TO JOŁ -->
+SPRAWDŹ TO JOŁ
 
 <ul class="w3-ul">
 {% for post in site.categories.post %}
