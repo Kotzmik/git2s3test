@@ -3,7 +3,39 @@ layout: default
 ---
 
 
-<p>Auth</p>
 
 {{ content }}
 
+<div id="noCognitoMessage" class="configMessage" style="display: none;">
+            <div class="backdrop"></div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">No Cognito User Pool Configured</h3>
+                </div>
+                <div class="panel-body">
+                    <p>There is no user pool configured in <a href="/js/config.js">/js/config.js</a>. You'll configure this in Module 2 of the workshop.</p>
+                </div>
+            </div>
+        </div>
+
+        <header>
+          <img src="images/logo.png">
+        </header>
+
+
+        <section class="form-wrap">
+            <h1>Sign In</h1>
+            <form id="signinForm">
+              <input type="email" id="emailInputSignin" placeholder="Email" required>
+              <input type="password" id="passwordInputSignin" placeholder="Password" pattern=".*" required>
+
+              <input type="submit" value="Sign in">
+            </form>
+        </section>
+
+        <script src="js/vendor/jquery-3.1.0.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/aws-cognito-sdk.min.js"></script>
+        <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/cognito-auth.js"></script>
