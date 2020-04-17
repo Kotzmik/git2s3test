@@ -1,0 +1,5 @@
+---
+title: Register
+layout: reg
+---
+

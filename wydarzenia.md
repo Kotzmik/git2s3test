@@ -1,5 +1,0 @@
----
-title: Wydarzenia
-layout: default
----
-
