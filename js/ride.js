@@ -15,7 +15,7 @@ WildRydes.map = WildRydes.map || {};
         alert(error);
         window.location.href = '/signin.html';
     });
-    function requestUnicorn() {
+    function requestUnicorn(pickupLocation) {
         $.ajax({
             method: 'POST',
             url: _config.api.invokeUrl + '/ride',
@@ -24,7 +24,9 @@ WildRydes.map = WildRydes.map || {};
             },
             data: JSON.stringify({
                 PickupLocation: {
-                    kon: zwalony
+                    Latitude: pickupLocation.latitude,
+                    Longitude: pickupLocation.longitude,
+					Koń: zwalony
                 }
             }),
             contentType: 'application/json',

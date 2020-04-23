@@ -15,11 +15,11 @@ body, html {
 
 </style>
 </head>
-<body>
 
+<body class="w3-theme-dark"> 
     <div class="info panel panel-default">
         <div class="panel-heading">
-            <button id="request" class="btn btn-primary">Set pickup</button>
+            <button id="request" class="btn btn-primary" disabled="disabled">Set pickup</button>
             <div class="dropdown pull-right">
                 <button id="accountLink" class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account <span class="caret"></span>
@@ -29,7 +29,11 @@ body, html {
                 </ul>
             </div>
         </div>
-        
+        <div class="panel-body">
+            <ol id="updates">
+                <li>Welcome! Click the map to set your pickup location.</li>
+            </ol>
+        </div>
     </div>
 
     <div id="noApiMessage" class="configMessage" style="display: none;">
@@ -58,6 +62,11 @@ body, html {
         </div>
     </div>
 
+    <div id="main">
+        <div id="map">
+        </div>
+    </div>
+
     <div id="authTokenModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="authToken">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -83,5 +92,6 @@ body, html {
     <script src="https://js.arcgis.com/4.3/"></script>
     <script src="js/config.js"></script>
     <script src="js/cognito-auth.js"></script>
+    <script src="js/esri-map.js"></script>
     <script src="js/ride.js"></script>
 </html>
