@@ -1,0 +1,5 @@
+---
+title: Ride
+layout: ride
+---
+
