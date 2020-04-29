@@ -34,7 +34,7 @@ var WildRydes = window.WildRydes || {};
                 console.error('Response: ', jqXHR.responseText);
                 alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
             }
-        };
+        });
     }
 
     function completeRequest(result) {
