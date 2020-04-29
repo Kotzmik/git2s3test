@@ -1,6 +1,6 @@
 ---
 title: succes
-layout: default
+layout: test
 ---
 
 # {{ page.title }}
