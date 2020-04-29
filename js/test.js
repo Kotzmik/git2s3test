@@ -8,11 +8,11 @@ var WildRydes = window.WildRydes || {};
         if (token) {
             authToken = token;
         } else {
-            window.location.href = '/signin.html';
+            window.location.href = '/login.html';
         }
     }).catch(function handleTokenError(error) {
         alert(error);
-        window.location.href = '/signin.html';
+        window.location.href = '/login.html';
     });
     function requestUnicorn(pickupLocation) {
         $.ajax({
@@ -55,7 +55,7 @@ var WildRydes = window.WildRydes || {};
         $('#signOut').click(function() {
             WildRydes.signOut();
             alert("You have been signed out.");
-            window.location = "signin.html";
+            window.location = "login.html";
         });
         $(WildRydes.map).on('pickupChange', handlePickupChanged);
 
