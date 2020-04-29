@@ -46,7 +46,7 @@ var WildRydes = window.WildRydes || {};
         displayUpdate(unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.');
         $('#request').prop('disabled', 'disabled');
         $('#request').text('Set Pickup');
-        };
+        
     }
 
     // Register click handler for #request button
