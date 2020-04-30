@@ -78,9 +78,9 @@ var WildRydes = window.WildRydes || {};
     }
 	//odpalana requestem
     function handleRequestClick(event) {
-        var pickupLocation = WildRydes.map.selectedPoint;
+        var nazwa = $('#name');
         event.preventDefault();
-        requestUnicorn(pickupLocation);
+        console.log(nazwa);
     }
 
 
