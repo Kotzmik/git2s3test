@@ -57,7 +57,7 @@ var WildRydes = window.WildRydes || {};
             alert("You have been signed out.");
             window.location = "login.html";
         });
-		$('#name').onchange(handlePickupChanged);
+		$('#name').change(handlePickupChanged);
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
