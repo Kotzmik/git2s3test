@@ -78,11 +78,9 @@ var WildRydes = window.WildRydes || {};
     }
 	//odpalana requestem
     function handleRequestClick(event) {
-        var nazwa = document.getElementById("name").value;
-		var body = document.getElementById("testerinho").value;
+        var file = {name:document.getElementById("name").value, body:document.getElementById("testerinho").value};
         event.preventDefault();
-        console.log(nazwa);
-		console.log(body);
+        console.log(file);
     }
 
 
