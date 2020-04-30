@@ -57,7 +57,7 @@ var WildRydes = window.WildRydes || {};
             alert("You have been signed out.");
             window.location = "login.html";
         });
-        $(WildRydes.map).on('pickupChange', handlePickupChanged);
+		$('#name').onchange(handlePickupChanged);
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
@@ -76,7 +76,7 @@ var WildRydes = window.WildRydes || {};
         requestButton.text('Request Unicorn');
         requestButton.prop('disabled', false);
     }
-
+	//odpalana requestem
     function handleRequestClick(event) {
         var pickupLocation = WildRydes.map.selectedPoint;
         event.preventDefault();
