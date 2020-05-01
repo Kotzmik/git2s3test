@@ -38,12 +38,9 @@ var WildRydes = window.WildRydes || {};
     }
 
     function completeRequest(result) {
-        var unicorn;
         var pronoun;
         console.log('Response received from API: ', result);
-        unicorn = result.Unicorn;
-        pronoun = unicorn.Gender === 'Male' ? 'his' : 'her';
-        displayUpdate(unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.');
+        displayUpdate('kurwa jest w pyte');
         $('#request').prop('disabled', 'disabled');
         $('#request').text('Set Pickup');
         
