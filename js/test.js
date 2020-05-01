@@ -17,7 +17,7 @@ var WildRydes = window.WildRydes || {};
     function requestUnicorn(file) {
         $.ajax({
             method: 'POST',
-            url: _config.api.invokeUrl + '/ride',
+            url: _config.api.invokeUrl + '/test',
             headers: {
                 Authorization: authToken
             },
