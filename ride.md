@@ -1,5 +1,5 @@
 ---
 title: Ride
-layout: ride
+layout: test
 ---
 
