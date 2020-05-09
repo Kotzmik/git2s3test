@@ -36,7 +36,22 @@ var WildRydes = window.WildRydes || {};
             }
         });
     }
-
+	function requestList() {
+		$.ajax({
+			method: 'GET',
+			url: _config.api.invokeUrl + '/ride',
+            headers: {
+                Authorization: authToken
+            },
+			contentType: 'application/json',
+			success: completeRequest,
+            error: function ajaxError(jqXHR, textStatus, errorThrown) {
+                console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
+                console.error('Response: ', jqXHR.responseText);
+                alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
+            }
+        });
+	}
     function completeRequest(result) {
         var pronoun;
         console.log('Response received from API: ', result);
@@ -66,6 +81,7 @@ var WildRydes = window.WildRydes || {};
         if (!_config.api.invokeUrl) {
             $('#noApiMessage').show();
         }
+		$('#GETT').click(handleGetClick);
     });
 
     function handlePickupChanged() {
@@ -85,4 +101,7 @@ var WildRydes = window.WildRydes || {};
     function displayUpdate(text) {
         $('#updates').append($('<li>' + text + '</li>'));
     }
+	function handleGetClick(event) {
+		requestList();
+	}
 }(jQuery));
