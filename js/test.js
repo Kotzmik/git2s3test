@@ -55,7 +55,7 @@ var WildRydes = window.WildRydes || {};
     function completeRequest(result) {
         var pronoun;
         console.log('Response received from API: ', result);
-        displayUpdate('kurwa jest w pyte');
+        displayUpdate(result);
         $('#request').prop('disabled', 'disabled');
         $('#request').text('Set Pickup');
         
