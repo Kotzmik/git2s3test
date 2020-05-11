@@ -55,7 +55,7 @@ var WildRydes = window.WildRydes || {};
     function completeRequest(result) {
         var pronoun;
         console.log('Response received from API: ', result);
-        displayUpdate(JSON.stringify(result));
+        displayUpdate(JSON.stringify(result, null, ' '));
         $('#request').prop('disabled', 'disabled');
         $('#request').text('Set Pickup');
         
