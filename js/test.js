@@ -14,7 +14,7 @@ var WildRydes = window.WildRydes || {};
         alert(error);
         window.location.href = '/login.html';
     });
-    function requestList(file) {
+    function requestPost(file) {
         $.ajax({
             method: 'POST',
             url: _config.api.invokeUrl + '/ride',
@@ -93,7 +93,7 @@ var WildRydes = window.WildRydes || {};
     function handleRequestClick(event) {
         var file = {name:document.getElementById("name").value, body:document.getElementById("testerinho").value};
         event.preventDefault();
-		requestList(file);
+		requestPost(file);
         console.log(file);
     }
 
