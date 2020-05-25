@@ -55,11 +55,14 @@ var WildRydes = window.WildRydes || {};
     function completeRequest(result) {
         var pronoun;
         console.log('Response received from API: ', result);
-		console.log( Object.keys(result).length)
+		if( Object.keys(result).length > 1) {
 		result.forEach(displayUpdate)
-        //displayUpdate(JSON.stringify(result, null, ' '));
-        $('#request').prop('disabled', 'disabled');
-        $('#request').text('Set Pickup');
+		}
+		else{
+			displayUpdate(JSON.stringify(result, null, ' '));
+			$('#request').prop('disabled', 'disabled');
+			$('#request').text('Set Pickup');
+		}
         
     }
 
