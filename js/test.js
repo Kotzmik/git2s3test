@@ -56,7 +56,8 @@ var WildRydes = window.WildRydes || {};
         var pronoun;
         console.log('Response received from API: ', result);
 		if( Object.keys(result).length > 1) {
-		result.forEach(displayUpdate)
+			$('#listF').empty()
+			result.forEach(displayListF)
 		}
 		else{
 			displayUpdate(JSON.stringify(result, null, ' '));
@@ -105,6 +106,9 @@ var WildRydes = window.WildRydes || {};
 
     function displayUpdate(text) {
         $('#updates').append($('<li>' + text + '</li>'));
+    }
+    function displayListF(text) {
+        $('#listF').append($('<li>' + text + '</li>'));
     }
 	function handleGetClick(event) {
 		requestList();
