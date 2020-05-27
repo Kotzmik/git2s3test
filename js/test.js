@@ -113,7 +113,7 @@ var WildRydes = window.WildRydes || {};
 	function handleGetClick(event) {
 		requestList();
 	}
-	function testalert(text) {
-		alert(text)
+	function testalert() {
+		alert('test')
 	}
 }(jQuery));
