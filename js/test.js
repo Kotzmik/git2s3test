@@ -108,9 +108,12 @@ var WildRydes = window.WildRydes || {};
         $('#updates').append($('<li>' + text + '</li>'));
     }
     function displayListF(text) {
-        $('#listF').append($('<li>' + text + ' &#9747; </li>'));
+        $('#listF').append($('<li>' + text.on(testalert) + ' &#9747; </li>'));
     }
 	function handleGetClick(event) {
 		requestList();
+	}
+	function testalert(text) {
+		alert(text)
 	}
 }(jQuery));
