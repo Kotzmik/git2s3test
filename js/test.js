@@ -88,9 +88,10 @@ var WildRydes = window.WildRydes || {};
             $('#noApiMessage').show();
         }
 		$('#GETT').click(handleGetClick);
-		$('#deleteFile').click(function() {
-			console.log('deleteFile');
-		
+		document.getElementById("listF").addEventListener("click", function(e) {
+			if(e.target && e.target.nodeName == "LI") {
+				console.log("List item ", e.target.id, " was clicked!");
+			}
 		});
     });
 
@@ -112,7 +113,7 @@ var WildRydes = window.WildRydes || {};
         $('#updates').append($('<li>' + text + '</li>'));
     }
     function displayListF(text) {
-        $('#listF').append($("<li>" + text + "<a id='deleteFile' href='#" + text + "'>&#9747;</a> </li>"));
+        $('#listF').append($("<li id='" + text + "'>" + text + "&#9747; </li>"));
     }
 	function handleGetClick(event) {
 		requestList();
