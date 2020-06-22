@@ -88,7 +88,10 @@ var WildRydes = window.WildRydes || {};
             $('#noApiMessage').show();
         }
 		$('#GETT').click(handleGetClick);
-		$('#deleteFile').click(testalert);
+		$('#deleteFile').click(function() {
+			console.log('deleteFile');
+		
+		});
     });
 
     function handlePickupChanged() {
@@ -115,6 +118,6 @@ var WildRydes = window.WildRydes || {};
 		requestList();
 	}
 	function testalert() {
-		alert("test");
+		console.log("test");
 	}
 }(jQuery));
