@@ -115,6 +115,6 @@ var WildRydes = window.WildRydes || {};
 		requestList();
 	}
 	function testalert() {
-		alert('test')
+		alert("test");
 	}
 }(jQuery));
