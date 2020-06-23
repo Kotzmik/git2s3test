@@ -97,7 +97,7 @@ var WildRydes = window.WildRydes || {};
 		$('#listF').on( "click", "li span", function( event ) {
 			var elem = $( this );
 			if ( elem.is( "[class^='w3-display-right']" ) ) {
-				console.log("X ", elem.id);
+				console.log("X ", this.id);
 			} else {
 				console.log("List item ", this.id, "clicked");
 			}
