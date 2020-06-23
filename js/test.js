@@ -97,9 +97,9 @@ var WildRydes = window.WildRydes || {};
 		$('#listF').on( "click", "li span", function( event ) {
 			var elem = $( this );
 			if ( elem.is( "[class^='w3-display-right']" ) ) {
-				alert("X ", this.id);
+				alert("X " + this.id);
 			} else {
-				alert("List item ", this.id, "clicked");
+				alert("List item " + this.id, "clicked");
 			}
 		});
     });
