@@ -117,7 +117,7 @@ var WildRydes = window.WildRydes || {};
         $('#updates').append($('<li>' + text + '</li>'));
     }
     function displayListF(text) {
-        $('#listF').append($("<li id='" + text + "'>" + text + "&#9747; </li>"));
+        $('#listF').append($("<li id='" + text + "'>" + text + "</li> &#9747;"));
     }
 	function handleGetClick(event) {
 		requestList();
