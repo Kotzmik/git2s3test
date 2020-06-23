@@ -95,6 +95,10 @@ var WildRydes = window.WildRydes || {};
 			}
 		});*/
 		$('#listF').on( "click", "li", function( event ) {
+			var elem=($this);
+			if (elem.span) {
+				alert(elem.id, "X");
+			}
 			console.log("List item ", this.id, "clicked");
 		});
     });
@@ -117,7 +121,7 @@ var WildRydes = window.WildRydes || {};
         $('#updates').append($('<li>' + text + '</li>'));
     }
     function displayListF(text) {
-        $('#listF').append($("<li id='" + text + "'>" + text + "</li> &#9747;"));
+        $('#listF').append($("<li id='" + text + "'>" + text + "<span class='w3-display-right'>&times;</span></li>"));
     }
 	function handleGetClick(event) {
 		requestList();
