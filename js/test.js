@@ -122,7 +122,7 @@ var WildRydes = window.WildRydes || {};
         $('#updates').append($('<li>' + text + '</li>'));
     }
     function displayListF(text) {
-        $('#listF').append($("<li class='w3-display-container' ><span id='" + text + "'>" + text + "</span><span class='w3-display-right' id='&times;" + text + "'>&times;</span></li>"));
+        $('#listF').append($("<li class='w3-display-container' ><span id='" + text + "'>" + text + "</span><span class='w3-display-right w3-button' id='&times;" + text + "'>&times;</span></li>"));
     }
 	function handleGetClick(event) {
 		requestList();
