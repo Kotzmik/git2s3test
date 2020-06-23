@@ -95,7 +95,7 @@ var WildRydes = window.WildRydes || {};
 			}
 		});*/
 		$('#listF').on( "click", "li", function( event ) {
-			console.log("List item ", this, "clicked");
+			console.log("List item ", this.id, "clicked");
 		});
     });
 
