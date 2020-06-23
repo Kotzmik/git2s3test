@@ -88,10 +88,14 @@ var WildRydes = window.WildRydes || {};
             $('#noApiMessage').show();
         }
 		$('#GETT').click(handleGetClick);
-		document.getElementById("listF").addEventListener("click", function(e) {
+		
+		/*document.getElementById("listF").addEventListener("click", function(e) {
 			if(e.target && e.target.nodeName == "LI") {
 				console.log("List item ", e.target.id, " was clicked!");
 			}
+		});*/
+		$('#listF').on( "click", "li", function( event ) {
+			console.log("List item ", this, "clicked");
 		});
     });
 
