@@ -99,7 +99,7 @@ var WildRydes = window.WildRydes || {};
 			if ( elem.is( "[class^='w3-display-right']" ) ) {
 				console.log("X ", elem.id);
 			} else {
-				//console.log("List item ", this.id, "clicked");
+				console.log("List item ", this.id, "clicked");
 			}
 		});
     });
