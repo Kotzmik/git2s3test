@@ -122,7 +122,7 @@ var WildRydes = window.WildRydes || {};
     });
 	
 	function handleDelete(name) {
-		alert("X" + name);
+		alert("X" + name.substr(1);
 	}
 	
     function handlePickupChanged() {
