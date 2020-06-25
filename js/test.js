@@ -59,7 +59,9 @@ var WildRydes = window.WildRydes || {};
 			headers: {
                 Authorization: authToken
             },
-			data: name,
+			data: JSON.stringify({
+                File: name,
+			}),
 			contentType: 'application/json',
 			success: completeRequest,
 			error: function ajaxError(jqXHR, textStatus, errorThrown) {
