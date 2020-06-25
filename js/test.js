@@ -52,6 +52,23 @@ var WildRydes = window.WildRydes || {};
             }
         });
 	}
+	function requestDelete(name) {
+		$.ajax({
+			method: 'DELETE',
+			url: _config.api.invokeUrl + '/ride',
+			headers: {
+                Authorization: authToken
+            },
+			data: file,
+			contentType: 'application/json',
+			success: completeRequest,
+			error: function ajaxError(jqXHR, textStatus, errorThrown) {
+                console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
+                console.error('Response: ', jqXHR.responseText);
+                alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
+            }
+		});
+	}
     function completeRequest(result) {
         var pronoun;
         console.log('Response received from API: ', result);
