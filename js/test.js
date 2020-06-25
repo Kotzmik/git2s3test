@@ -114,13 +114,17 @@ var WildRydes = window.WildRydes || {};
 		$('#listF').on( "click", "li span", function( event ) {
 			var elem = $( this );
 			if ( elem.is( "[class^='w3-display-right']" ) ) {
-				alert("X " + this.id);
+				handleDelete(this.id)
 			} else {
 				alert("List item " + this.id, "clicked");
 			}
 		});
     });
-
+	
+	function handleDelete(name) {
+		alert("X" + name);
+	}
+	
     function handlePickupChanged() {
         var requestButton = $('#request');
         requestButton.text('Request Unicorn');
