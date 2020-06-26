@@ -134,7 +134,7 @@ var WildRydes = window.WildRydes || {};
 			if ( elem.is( "[class^='w3-display-right']" ) ) {
 				handleDelete(this.id)
 			} else {
-				alert("List item " + this.id, "clicked");
+				handlePut(this.id)
 			}
 		});
     });
