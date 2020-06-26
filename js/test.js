@@ -82,13 +82,17 @@ var WildRydes = window.WildRydes || {};
                 File: name,
 			}),
 			contentType: 'application/json',
-			success: completeRequest,
+			success: completePut,
 			error: function ajaxError(jqXHR, textStatus, errorThrown) {
                 console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
                 console.error('Response: ', jqXHR.responseText);
                 alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
             }
 		});
+	}
+	
+	function completePut(result) {
+        console.log('Response received from API: ', result);
 	}
 	
     function completeRequest(result) {
