@@ -71,6 +71,25 @@ var WildRydes = window.WildRydes || {};
             }
 		});
 	}
+	function requestPut(name) {
+		$.ajax({
+			method: 'PUT',
+			url: _config.api.invokeUrl + '/ride',
+			headers: {
+                Authorization: authToken
+            },
+			data: JSON.stringify({
+                File: name,
+			}),
+			contentType: 'application/json',
+			success: completeRequest,
+			error: function ajaxError(jqXHR, textStatus, errorThrown) {
+                console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
+                console.error('Response: ', jqXHR.responseText);
+                alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
+            }
+		}),
+	}
     function completeRequest(result) {
         var pronoun;
         console.log('Response received from API: ', result);
@@ -108,11 +127,7 @@ var WildRydes = window.WildRydes || {};
         }
 		$('#GETT').click(handleGetClick);
 		
-		/*document.getElementById("listF").addEventListener("click", function(e) {
-			if(e.target && e.target.nodeName == "LI") {
-				console.log("List item ", e.target.id, " was clicked!");
-			}
-		});*/
+		//event listener for file list
 		$('#listF').on( "click", "li span", function( event ) {
 			var elem = $( this );
 			if ( elem.is( "[class^='w3-display-right']" ) ) {
@@ -123,6 +138,10 @@ var WildRydes = window.WildRydes || {};
 		});
     });
 	
+	function handlePut(name) {
+		requestPut(name)
+	}
+	
 	function handleDelete(name) {
 		requestDelete(name.substr(1))
 	}
@@ -132,7 +151,7 @@ var WildRydes = window.WildRydes || {};
         requestButton.text('Request Unicorn');
         requestButton.prop('disabled', false);
     }
-	//odpalana requestem
+	
     function handleRequestClick(event) {
         var file = {name:document.getElementById("name").value, body:document.getElementById("testerinho").value};
         event.preventDefault();
