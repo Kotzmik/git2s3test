@@ -106,8 +106,8 @@ var WildRydes = window.WildRydes || {};
 		}
 		else{
 			displayUpdate(JSON.stringify(result, null, ' '));
-			$('#request').prop('disabled', 'disabled');
-			$('#request').text('Set Pickup');
+			$('request').removeClass("w3-green")
+			$('#POST').hide();
 			requestList();
 		}
         
@@ -125,8 +125,8 @@ var WildRydes = window.WildRydes || {};
             alert("You have been signed out.");
             window.location = "login.html";
         });
-		$('#name').change(handlePickupChanged);
-		$('#POSTtext').change(handlePickupChanged);
+		$('#name').change(handlePostChanged);
+		$('#POSTtext').change(handlePostChanged);
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
@@ -160,9 +160,9 @@ var WildRydes = window.WildRydes || {};
 		requestDelete(name.substr(1))
 	}
 	
-    function handlePickupChanged() {
+    function handlePostChanged() {
+		$('request').addClass("w3-green")
         var requestButton = $('#request');
-        requestButton.text('Request Unicorn');
         requestButton.prop('disabled', false);
     }
 	
@@ -171,7 +171,7 @@ var WildRydes = window.WildRydes || {};
         event.preventDefault();
 		requestPost(file);
         console.log(file);
-		$('#POST').hide();
+		
     }
 
 
