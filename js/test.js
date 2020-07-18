@@ -116,7 +116,7 @@ var WildRydes = window.WildRydes || {};
     // Register click handler for #request button
     $(function onDocReady() {
 		requestList();
-		$('#POST&times;').click(function() {
+		$('#POSTx').click(function() {
 			$('#POST').hide();
 		});
         $('#request').click(handleRequestClick);
