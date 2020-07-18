@@ -94,7 +94,7 @@ var WildRydes = window.WildRydes || {};
 	function completePut(result) {
         console.log('Response received from API: ', result);
 		$('#name').val(result.File);
-		$('#testerinho').text(result.Body);
+		$('#POSTtext').text(result.Body);
 	}
 	
     function completeRequest(result) {
@@ -126,6 +126,7 @@ var WildRydes = window.WildRydes || {};
             window.location = "login.html";
         });
 		$('#name').change(handlePickupChanged);
+		$('#POSTtext').change(handlePickupChanged);
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
@@ -166,7 +167,7 @@ var WildRydes = window.WildRydes || {};
     }
 	
     function handleRequestClick(event) {
-        var file = {name:document.getElementById("name").value, body:document.getElementById("testerinho").value};
+        var file = {name:document.getElementById("name").value, body:document.getElementById("POSTtext").value};
         event.preventDefault();
 		requestPost(file);
         console.log(file);
