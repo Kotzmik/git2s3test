@@ -106,8 +106,7 @@ var WildRydes = window.WildRydes || {};
 		}
 		else{
 			displayUpdate(JSON.stringify(result, null, ' '));
-			$('#request').removeClass("w3-green")
-			$('#POST').hide();
+			handleHidePost();
 			requestList();
 		}
         
@@ -116,9 +115,7 @@ var WildRydes = window.WildRydes || {};
     // Register click handler for #request button
     $(function onDocReady() {
 		requestList();
-		$('#POSTx').click(function() {
-			$('#POST').hide();
-		});
+		$('#POSTx').click(handleHidePost);
         $('#request').click(handleRequestClick);
         $('#signOut').click(function() {
             WildRydes.signOut();
@@ -156,6 +153,10 @@ var WildRydes = window.WildRydes || {};
 		requestPut(name)
 	}
 	
+	function handleHidePost() {
+		$('#request').removeClass("w3-green")
+		$('#POST').hide();
+	}
 	function handleDelete(name) {
 		requestDelete(name.substr(1))
 	}
