@@ -94,7 +94,7 @@ var WildRydes = window.WildRydes || {};
 	function completePut(result) {
         console.log('Response received from API: ', result);
 		$('#name').val(result.File);
-		$('#POSTtext').text(result.Body);
+		$('#POSTtext').html(result.Body);
 	}
 	
     function completeRequest(result) {
