@@ -148,6 +148,7 @@ var WildRydes = window.WildRydes || {};
     });
 	
 	function handlePut(name) {
+		$('#POST').show();
 		requestPut(name)
 	}
 	
@@ -166,6 +167,7 @@ var WildRydes = window.WildRydes || {};
         event.preventDefault();
 		requestPost(file);
         console.log(file);
+		$('#POST').show();
     }
 
 
