@@ -123,7 +123,7 @@ var WildRydes = window.WildRydes || {};
             window.location = "login.html";
         });
 		$('#name').change(handlePostChanged);
-		$('#POSTtext').change(handlePostChanged);
+		//$('#POSTtext').change(handlePostChanged);
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
