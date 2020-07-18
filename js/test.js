@@ -108,7 +108,7 @@ var WildRydes = window.WildRydes || {};
 			displayUpdate(JSON.stringify(result, null, ' '));
 			$('#request').prop('disabled', 'disabled');
 			$('#request').text('Set Pickup');
-			requestList;
+			requestList();
 		}
         
     }
