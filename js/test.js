@@ -106,7 +106,7 @@ var WildRydes = window.WildRydes || {};
 		}
 		else{
 			displayUpdate(JSON.stringify(result, null, ' '));
-			$('request').removeClass("w3-green")
+			$('#request').removeClass("w3-green")
 			$('#POST').hide();
 			requestList();
 		}
@@ -161,7 +161,7 @@ var WildRydes = window.WildRydes || {};
 	}
 	
     function handlePostChanged() {
-		$('request').addClass("w3-green")
+		$('#request').addClass("w3-green")
         var requestButton = $('#request');
         requestButton.prop('disabled', false);
     }
