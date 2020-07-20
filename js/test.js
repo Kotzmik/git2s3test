@@ -155,6 +155,7 @@ layout: default
     });
 	
 	function handleNewFile() {
+		$('#POST').show();
 		$('#name').val('name.md');
 		$('#POSTtext').val(FileTemp)
 	}
