@@ -97,6 +97,7 @@ var WildRydes = window.WildRydes || {};
 		var txt = $('#POSTtext');
 		$('#name').val(result.File);
 		txt.val(result.Body);
+		textMem=txt;
 	}
 	
     function completeRequest(result) {
@@ -116,6 +117,7 @@ var WildRydes = window.WildRydes || {};
 
     // Register click handler for #request button
     $(function onDocReady() {
+		var textMem;
 		$('#POSTx').click(handleHidePost);
         $('#request').click(handleRequestClick);
 		$('#NewFile').click(handleNewFile);
@@ -153,9 +155,10 @@ var WildRydes = window.WildRydes || {};
     });
 	
 	function handleNewFile() {
+		textMem=FileTemp;
 		$('#POST').show();
 		$('#name').val('name.md');
-		$('#POSTtext').val(FileTemp)
+		$('#POSTtext').val(FileTemp);
 	}
 	
 	function handlePut(name) {
