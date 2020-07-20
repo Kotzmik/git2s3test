@@ -98,7 +98,8 @@ var WildRydes = window.WildRydes || {};
 		var txt = $('#POSTtext');
 		$('#name').val(result.File);
 		txt.val(result.Body);
-		 var textMem=txt;
+		var textMem=txt;
+		console.log(textMem);
 	}
 	
     function completeRequest(result) {
@@ -167,7 +168,7 @@ var WildRydes = window.WildRydes || {};
 		$('#POST').show();
 		$('#request').removeClass("w3-green")
 		requestPut(name);
-		console.log(textMem);
+		
 	}
 	
 	function handleHidePost() {
