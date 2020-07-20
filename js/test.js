@@ -73,7 +73,7 @@ var WildRydes = window.WildRydes || {};
             }
 		});
 	}
-	function requestPut(name) {
+	function requestPut(name, callback) {
 		$.ajax({
 			method: 'PUT',
 			url: _config.api.invokeUrl + '/ride',
@@ -90,6 +90,7 @@ var WildRydes = window.WildRydes || {};
                 console.error('Response: ', jqXHR.responseText);
                 alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
             }
+			callback();
 		});
 	}
 	
@@ -166,8 +167,10 @@ var WildRydes = window.WildRydes || {};
 	function handlePut(name) {
 		$('#POST').show();
 		$('#request').removeClass("w3-green")
-		requestPut(name);
-		console.log(textMem);
+		requestPut(name, function() {
+			console.log(textMem);
+		});
+		
 		
 	}
 	
