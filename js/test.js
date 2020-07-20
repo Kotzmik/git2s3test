@@ -167,6 +167,9 @@ var WildRydes = window.WildRydes || {};
 		$('#POST').show();
 		$('#request').removeClass("w3-green")
 		requestPut(name);
+		setTimeout( function() {
+			console.log(textMem)
+		}, 2000); 
 	}
 	
 	function handleHidePost() {
