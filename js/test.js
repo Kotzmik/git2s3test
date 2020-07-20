@@ -115,7 +115,6 @@ var WildRydes = window.WildRydes || {};
 
     // Register click handler for #request button
     $(function onDocReady() {
-		requestList();
 		$('#POSTx').click(handleHidePost);
         $('#request').click(handleRequestClick);
         $('#signOut').click(function() {
@@ -124,12 +123,13 @@ var WildRydes = window.WildRydes || {};
             window.location = "login.html";
         });
 		$('#name').change(handlePostChanged);
-		//$('#POSTtext').change(handlePostChanged);
+		$('#POSTtext').change(handlePostChanged);
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
                 displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
                 $('.authToken').text(token);
+				requestList();
             }
         });
 
