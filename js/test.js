@@ -159,14 +159,14 @@ var WildRydes = window.WildRydes || {};
 		$('#POST').show();
 		$('#name').val('name.md');
 		$('#POSTtext').val(FileTemp);
-		console.log(FileTemp);
+		console.log(textMem);
 	}
 	
 	function handlePut(name) {
 		$('#POST').show();
 		$('#request').removeClass("w3-green")
 		requestPut(name)
-		console.log(FileTemp);
+		console.log(textTemp);
 	}
 	
 	function handleHidePost() {
