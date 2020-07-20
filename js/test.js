@@ -89,8 +89,8 @@ var WildRydes = window.WildRydes || {};
                 console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
                 console.error('Response: ', jqXHR.responseText);
                 alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
-            }
-			callback();
+            },
+			callback(),
 		});
 	}
 	
