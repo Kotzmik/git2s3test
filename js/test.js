@@ -99,7 +99,6 @@ var WildRydes = window.WildRydes || {};
 		var textMem = result.Body;
 		$('#name').val(result.File);
 		$('#POSTtext').val(result.Body);
-		console.log(textMem);
 	}
 	
     function completeRequest(result) {
@@ -168,6 +167,7 @@ var WildRydes = window.WildRydes || {};
 		$('#POST').show();
 		$('#request').removeClass("w3-green")
 		requestPut(name);
+		console.log(textMem);
 		
 	}
 	
