@@ -98,7 +98,7 @@ var WildRydes = window.WildRydes || {};
 		var txt = $('#POSTtext');
 		$('#name').val(result.File);
 		txt.val(result.Body);
-		textMem=txt;
+		 var textMem=txt;
 	}
 	
     function completeRequest(result) {
