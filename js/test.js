@@ -4,7 +4,7 @@ var WildRydes = window.WildRydes || {};
 
 (function rideScopeWrapper($) {
     var authToken;
-	const FileTemp = '--- \n title: def \n layout: default \n ---';
+	const FileTemp = '--- \n title: name \n layout: default \n ---';
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
             authToken = token;
