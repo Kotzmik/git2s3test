@@ -140,7 +140,7 @@ var WildRydes = window.WildRydes || {};
         if (!_config.api.invokeUrl) {
             $('#noApiMessage').show();
         }
-		
+		//zmienić funkcje żeby odpalały się gdy text różni się od textMem
 		$('#name').on("input", handlePostChanged);
 		$('#POSTtext').on("input", handlePostChanged);
 		
@@ -160,16 +160,12 @@ var WildRydes = window.WildRydes || {};
 		$('#POST').show();
 		$('#name').val('name.md');
 		$('#POSTtext').val(FileTemp);
-		console.log(textMem);
 	}
 	
 	function handlePut(name) {
 		$('#POST').show();
 		$('#request').removeClass("w3-green")
 		requestPut(name);
-		setTimeout( function() {
-			console.log(textMem)
-		}, 2000); 
 	}
 	
 	function handleHidePost() {
