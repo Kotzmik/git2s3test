@@ -5,6 +5,7 @@ var WildRydes = window.WildRydes || {};
 (function rideScopeWrapper($) {
     var authToken;
 	const FileTemp = '--- \n title: name \n layout: default \n ---';
+	var textMem;
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
             authToken = token;
@@ -117,7 +118,7 @@ var WildRydes = window.WildRydes || {};
 
     // Register click handler for #request button
     $(function onDocReady() {
-		var textMem;
+		
 		$('#POSTx').click(handleHidePost);
         $('#request').click(handleRequestClick);
 		$('#NewFile').click(handleNewFile);
