@@ -4,6 +4,10 @@ var WildRydes = window.WildRydes || {};
 
 (function rideScopeWrapper($) {
     var authToken;
+	const FileTemp = "---
+title: def
+layout: default
+---"
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
             authToken = token;
@@ -117,6 +121,8 @@ var WildRydes = window.WildRydes || {};
     $(function onDocReady() {
 		$('#POSTx').click(handleHidePost);
         $('#request').click(handleRequestClick);
+		$('#NewFile').click(handleNewFile);
+		$('#Refresh').click(handleGetClick);
         $('#signOut').click(function() {
             WildRydes.signOut();
             alert("You have been signed out.");
@@ -124,7 +130,6 @@ var WildRydes = window.WildRydes || {};
         });
 		$('#name').change(handlePostChanged);
 		$('#POSTtext').change(handlePostChanged);
-
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
                 displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
@@ -136,7 +141,7 @@ var WildRydes = window.WildRydes || {};
         if (!_config.api.invokeUrl) {
             $('#noApiMessage').show();
         }
-		$('#GETT').click(handleGetClick);
+		
 		
 		//event listener for file list
 		$('#listF').on( "click", "li span", function( event ) {
@@ -148,6 +153,11 @@ var WildRydes = window.WildRydes || {};
 			}
 		});
     });
+	
+	function handleNewFile() {
+		$('#name').val('name.md');
+		$('#POSTtext').val(FileTemp)
+	}
 	
 	function handlePut(name) {
 		$('#POST').show();
