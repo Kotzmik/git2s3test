@@ -125,8 +125,7 @@ var WildRydes = window.WildRydes || {};
             alert("You have been signed out.");
             window.location = "login.html";
         });
-		$('#name').change(handlePostChanged);
-		$('#POSTtext').change(handlePostChanged);
+
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
                 displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
@@ -139,6 +138,8 @@ var WildRydes = window.WildRydes || {};
             $('#noApiMessage').show();
         }
 		
+		$('#name').on("input", handlePostChanged);
+		$('#POSTtext').on("input", handlePostChanged);
 		
 		//event listener for file list
 		$('#listF').on( "click", "li span", function( event ) {
