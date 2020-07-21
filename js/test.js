@@ -160,14 +160,14 @@ var WildRydes = window.WildRydes || {};
 		$('#POST').show();
 		$('#name').val('name.md');
 		$('#POSTtext').val(FileTemp);
-		$(window).scrollTop(0);
+		$("div").scrollTop(0);
 	}
 	
 	function handlePut(name) {
 		$('#POST').show();
 		$('#request').removeClass("w3-green")
 		requestPut(name);
-		$(window).scrollTop(0);
+		$("div").scrollTop(0);
 	}
 	
 	function handleHidePost() {
