@@ -128,9 +128,10 @@ var WildRydes = window.WildRydes || {};
             alert("You have been signed out.");
             window.location = "login.html";
         });
+		
 		$('#authTokenModal').click( function() {
 			$(this).show();
-		}
+		});
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
                 displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
