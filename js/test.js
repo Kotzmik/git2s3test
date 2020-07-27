@@ -123,6 +123,9 @@ var WildRydes = window.WildRydes || {};
         $('#request').click(handleRequestClick);
 		$('#NewFile').click(handleNewFile);
 		$('#Refresh').click(handleGetClick);
+		$('#testtxt').click(function() {
+			console.log( this )
+		});
 		$('#x').click(function() {
 			$('#authTokenModal').toggle();
 		});
