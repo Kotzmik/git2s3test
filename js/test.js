@@ -135,7 +135,7 @@ var WildRydes = window.WildRydes || {};
 		});
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
-                displayUpdate('You are authenticated. Click to see your <a id="#authTokenModal" >auth token</a>.');
+                displayUpdate('You are authenticated. Click to see your <a id="authTokenModal" >auth token</a>.');
                 $('.authToken').text(token);
 				requestList();
             }
