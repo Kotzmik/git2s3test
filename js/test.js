@@ -129,9 +129,6 @@ var WildRydes = window.WildRydes || {};
             window.location = "login.html";
         });
 		
-		$('#modal').click( function() {
-			console.log(this);
-		});
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
                 displayUpdate('You are authenticated. Click to see your <a href="#modal" id="modal" >auth token</a>.');
@@ -139,7 +136,11 @@ var WildRydes = window.WildRydes || {};
 				requestList();
             }
         });
-
+		
+		$('#modal').click( function() {
+			console.log(this);
+		});
+		
         if (!_config.api.invokeUrl) {
             $('#noApiMessage').show();
         }
