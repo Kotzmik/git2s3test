@@ -137,8 +137,8 @@ var WildRydes = window.WildRydes || {};
             }
         });
 		
-		$('#modal').click( function() {
-			console.log(this);
+		$('#modal').click(function() {
+			console.log('modal');
 		});
 		
         if (!_config.api.invokeUrl) {
