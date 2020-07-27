@@ -159,7 +159,6 @@ var WildRydes = window.WildRydes || {};
 		});
 		
 		$('#modal').click(function() {
-			console.log('modal');
 			$('#authTokenModal').toggle();
 		});
 		
