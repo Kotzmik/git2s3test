@@ -124,7 +124,7 @@ var WildRydes = window.WildRydes || {};
 		$('#NewFile').click(handleNewFile);
 		$('#Refresh').click(handleGetClick);
 		$('#testtxt').click(function() {
-			console.log( this )
+			console.log( textMem )
 		});
 		$('#x').click(function() {
 			$('#authTokenModal').toggle();
