@@ -130,11 +130,12 @@ var WildRydes = window.WildRydes || {};
         });
 		
 		$('#authTokenModal').click( function() {
-			$(this).toggle();
+			$(this).show();
+			console.log(this);
 		});
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
-                displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
+                displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" >auth token</a>.');
                 $('.authToken').text(token);
 				requestList();
             }
