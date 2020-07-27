@@ -129,13 +129,13 @@ var WildRydes = window.WildRydes || {};
             window.location = "login.html";
         });
 		
-		$('#authTokenModal').click( function() {
-			$(this).show();
+		$('#modal').click( function() {
+			$('#authTokenModal').show();
 			console.log(this);
 		});
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
-                displayUpdate('You are authenticated. Click to see your <a id="authTokenModal" >auth token</a>.');
+                displayUpdate('You are authenticated. Click to see your <a id="modal" >auth token</a>.');
                 $('.authToken').text(token);
 				requestList();
             }
