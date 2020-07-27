@@ -214,5 +214,4 @@ var WildRydes = window.WildRydes || {};
 	function testalert() {
 		console.log("test");
 	}
-}
 }(jQuery));
