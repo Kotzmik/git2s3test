@@ -123,6 +123,9 @@ var WildRydes = window.WildRydes || {};
         $('#request').click(handleRequestClick);
 		$('#NewFile').click(handleNewFile);
 		$('#Refresh').click(handleGetClick);
+		$('#x').click(function() {
+			$('#modal').hide();
+		});
         $('#signOut').click(function() {
             WildRydes.signOut();
             alert("You have been signed out.");
