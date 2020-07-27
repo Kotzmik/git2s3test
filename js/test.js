@@ -131,16 +131,12 @@ var WildRydes = window.WildRydes || {};
 		
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
-                displayUpdate('You are authenticated. Click to see your <a id="modal" class="w3-button" href="#modal">Auth Token</a>.');
+                displayUpdate('You are authenticated. Click to see your <a id="modal" href="#modal">Auth Token</a>.');
                 $('.authToken').text(token);
 				requestList();
             }
         });
 		
-		$('#modal').click(function() {
-			console.log('modal');
-			$('#authTokenModal').toggle();
-		});
 		
         if (!_config.api.invokeUrl) {
             $('#noApiMessage').show();
@@ -158,6 +154,12 @@ var WildRydes = window.WildRydes || {};
 				handlePut(this.id)
 			}
 		});
+		
+		$('#modal').click(function() {
+			console.log('modal');
+			$('#authTokenModal').toggle();
+		});
+		
     });
 	
 	function handleNewFile() {
