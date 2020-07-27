@@ -134,6 +134,7 @@ var WildRydes = window.WildRydes || {};
 		
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
+				$('#modal').removeClass('w3-disabled');
                 displayUpdate('You are authenticated.');
                 $('.authToken').text(token);
 				requestList();
