@@ -130,7 +130,7 @@ var WildRydes = window.WildRydes || {};
         });
 		
 		$('#authTokenModal').click( function() {
-			$(this).show();
+			$(this).toggle();
 		});
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
