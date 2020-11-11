@@ -40,7 +40,7 @@ var WildRydes = window.WildRydes || {};
             }
         });
     }
-	function requestList(name) {
+	function requestList() {
 		$("#buffer").show();
 		$.ajax({
 			method: 'GET',
@@ -48,9 +48,9 @@ var WildRydes = window.WildRydes || {};
             headers: {
                 Authorization: authToken
 			},
-			data: JSON.stringify({
+			/*data: JSON.stringify({
                 Dir: 'test',
-            }),
+            }),*/
 			contentType: 'application/json',
 			success: completeRequest,
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
