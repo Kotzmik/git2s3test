@@ -15,15 +15,17 @@
 
 <body style="overflow:hidden;position:fixed;width:100vw">
     <div class="w3-border-bottom w3-row w3-bar" style="position:sticky;top:0;">
-        <a id="NewFile" class="w3-bar-item w3-button w3-left">+</span>
-        <a id="Refresh" class="w3-bar-item w3-button w3-left">&#8635;</span>
-        <a id="signOut" class="w3-bar-item w3-button w3-left" href="#signOut">Sign out</a>
-        <a id="modal" class="w3-bar-item w3-button w3-right w3-disabled" href="#modal">Auth Token</a>
-        <a id="testtxt" class="w3-bar-item w3-button w3-right" href="#">memtxt</a>
+        <a id="NewFile" class="w3-bar-item w3-button line-height w3-left">+</span>
+        <a id="Refresh" class="w3-bar-item w3-button line-height w3-left">&#8635;</span>
+        <a id="signOut" class="w3-bar-item w3-button line-height w3-left" href="#signOut">Sign out</a>
+        <a id="home" class="w3-bar-item w3-button line-height w3-left">Home</a>
+        <a id="modal" class="w3-bar-item w3-button line-height w3-right w3-disabled" href="#modal">Auth Token</a>
+        <a id="testtxt" class="w3-bar-item w3-button line-height w3-right">memtxt</a>
+        <div id="buffer" class='loader w3-bar-item line-height w3-right'></div>
     </div>
-    <div class="w3-row" style="display:flex;">
+    <div class="w3-row" style="height:100vh;display:flex;">
         <div class="w3-col w3-border-right" style="width:80%;overflow-y:auto;"> 
-            <div class="info panel panel-default" id="POST" style="display: none;">
+            <div id="POST" class="info panel panel-default" style="display: none;">
                 <div class="panel-heading">Name
                     <input type="text" id="name" value="nazwa.md">
                     <button id="request" class="btn btn-primary">Upload</button>

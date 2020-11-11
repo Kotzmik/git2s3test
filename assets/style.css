@@ -256,6 +256,24 @@ ul{list-style: none}
 .w3-hover-theme:hover {color:#000 !important; background-color:#b4b7ba !important}
 .w3-hover-text-theme:hover {color:#b4b7ba !important}
 .w3-hover-border-theme:hover {border-color:#b4b7ba !important}
-a{background-color:transparent;text-decoration:none;color:#fff}a:active,a:hover{outline-width:0;color:#999}
-font-family: 'Lato', sans-serif;
+/*a{background-color:transparent;text-decoration:none;color:#fff}a:active,a:hover{outline-width:0;color:#999}
+*/
+.line-height {line-height: 1.5}
 
+/*animation*/
+.loader {
+    border: 16px solid #f3f3f3 !important; /* Light grey */
+    border-top: 16px solid #3498db !important; /* Blue */
+    border-radius: 50%;
+    /*width: 120px;
+    height: 120px;*/
+    padding: 0px 0px !important;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .prefix {border-color:greenyellow !important}

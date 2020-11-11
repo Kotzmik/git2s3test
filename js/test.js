@@ -6,6 +6,7 @@ var WildRydes = window.WildRydes || {};
     var authToken;
 	const FileTemp = '---\ntitle: name\nlayout: default\n---';
 	var textMem;
+	const prefix='';
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
             authToken = token;
@@ -17,13 +18,14 @@ var WildRydes = window.WildRydes || {};
         window.location.href = '/login.html';
     });
     function requestPost(file) {
+		$("#buffer").show();
         $.ajax({
             method: 'POST',
             url: _config.api.invokeUrl + '/ride',
             headers: {
                 Authorization: authToken
             },
-            data: JSON.stringify({
+			data: JSON.stringify({
                 File: {
                     name: file.name,
                     Body: file.body
@@ -38,13 +40,17 @@ var WildRydes = window.WildRydes || {};
             }
         });
     }
-	function requestList() {
+	function requestList(name) {
+		$("#buffer").show();
 		$.ajax({
 			method: 'GET',
 			url: _config.api.invokeUrl + '/ride',
             headers: {
                 Authorization: authToken
-            },
+			},
+			data: JSON.stringify({
+                Dir: 'test',
+            }),
 			contentType: 'application/json',
 			success: completeRequest,
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
@@ -55,6 +61,7 @@ var WildRydes = window.WildRydes || {};
         });
 	}
 	function requestDelete(name) {
+		$("#buffer").show();
 		$.ajax({
 			method: 'DELETE',
 			url: _config.api.invokeUrl + '/ride',
@@ -74,6 +81,7 @@ var WildRydes = window.WildRydes || {};
 		});
 	}
 	function requestPut(name) {
+		$("#buffer").show();
 		$.ajax({
 			method: 'PUT',
 			url: _config.api.invokeUrl + '/ride',
@@ -96,24 +104,25 @@ var WildRydes = window.WildRydes || {};
 	function completePut(result) {
         console.log('Response received from API: ', result);
 		var txt = $('#POSTtext');
-		textMem = result.Body;
+		textMem = [result.File, result.Body];
 		$('#name').val(result.File);
 		$('#POSTtext').val(result.Body);
+		$("#buffer").hide();
 	}
 	
     function completeRequest(result) {
-        var pronoun;
         console.log('Response received from API: ', result);
 		if( Object.keys(result).length > 1) {
 			$('#listF').empty()
-			result.forEach(displayListF)
+			result.Prefixes.forEach(displayListP)
+			result.Files.forEach(displayListF)
 		}
 		else{
 			displayUpdate(JSON.stringify(result, null, ' '));
 			handleHidePost();
 			requestList();
 		}
-        
+        $("#buffer").hide();
     }
 
     // Register click handler for #request button
@@ -134,7 +143,7 @@ var WildRydes = window.WildRydes || {};
             alert("You have been signed out.");
             window.location = "login.html";
         });
-		
+		$('#home').click(handleHome);
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
 				$('#modal').removeClass('w3-disabled');
@@ -155,11 +164,15 @@ var WildRydes = window.WildRydes || {};
 		//event listener for file list
 		$('#listF').on( "click", "li span", function( event ) {
 			var elem = $( this );
-			if ( elem.is( "[class^='w3-display-right']" ) ) {
+			if ( elem.is( "[class^='prefix']" ) ) {
+				console.log("handleDirChange")
+				handleDirChange(this.id);
+			} else if ( elem.is( "[class^='w3-display-right']" ) ) {
 				handleDelete(this.id)
 			} else {
 				handlePut(this.id)
 			}
+			console.log(elem)
 		});
 		
 		$('#modal').click(function() {
@@ -175,16 +188,19 @@ var WildRydes = window.WildRydes || {};
 		$('#POSTtext').val(FileTemp);
 		$("div").scrollTop(0);
 	}
-	
+	function handleDirChange(name) {
+		console.log(name)
+	}
+
 	function handlePut(name) {
 		$('#POST').show();
-		$('#request').removeClass("w3-green")
+		$('#request').removeClass("w3-green").prop('disabled', true);
 		requestPut(name);
 		$("div").scrollTop(0);
 	}
 	
 	function handleHidePost() {
-		$('#request').removeClass("w3-green")
+		$('#request').removeClass("w3-green").prop('disabled', true);
 		$('#POST').hide();
 	}
 	function handleDelete(name) {
@@ -192,9 +208,14 @@ var WildRydes = window.WildRydes || {};
 	}
 	
     function handlePostChanged() {
-		$('#request').addClass("w3-green")
-        var requestButton = $('#request');
-        requestButton.prop('disabled', false);
+		let file=[$('#name').val(), $('#POSTtext').val()];
+		//console.log(file)
+		if(JSON.stringify(file)!=JSON.stringify(textMem)){
+			$('#request').addClass("w3-green").prop('disabled', false);
+		}
+		else {
+			$('#request').removeClass("w3-green").prop('disabled', true);
+		}
     }
 	
     function handleRequestClick(event) {
@@ -210,10 +231,17 @@ var WildRydes = window.WildRydes || {};
     }
     function displayListF(text) {
         $('#listF').append($("<li class='w3-display-container' ><span id='" + text + "'>" + text + "</span><span class='w3-display-right w3-button' id='&times;" + text + "'>&times;</span></li>"));
-    }
+	}
+	function displayListP(text) {
+		$('#listF').append($("<li class='w3-display-container' ><span id='" + text + "'class='prefix'>" + text + "</span></li>"));
+	}
 	function handleGetClick(event) {
 		requestList();
 	}
+	function handleHome() {
+		document.location.href="/";
+	}
+
 	function testalert() {
 		console.log("test");
 	}
