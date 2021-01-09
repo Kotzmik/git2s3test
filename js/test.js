@@ -6,7 +6,7 @@ var WildRydes = window.WildRydes || {};
     var authToken;
 	const FileTemp = '---\ntitle: name\nlayout: default\n---';
 	var textMem;
-	const prefix='';
+	var dir;
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
             authToken = token;
@@ -26,6 +26,7 @@ var WildRydes = window.WildRydes || {};
                 Authorization: authToken
             },
 			data: JSON.stringify({
+				Content: 'post',
                 File: {
                     name: file.name,
                     Body: file.body
@@ -39,18 +40,41 @@ var WildRydes = window.WildRydes || {};
                 alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
             }
         });
-    }
-	function requestList() {
+	}
+	
+	function requestPostTest(file) {
 		$("#buffer").show();
-		$.ajax({
-			method: 'GET',
-			url: _config.api.invokeUrl + '/ride',
+        $.ajax({
+            method: 'POST',
+            url: _config.api.invokeUrl + '/ride',
             headers: {
                 Authorization: authToken
+            },
+			data: JSON.stringify(file),
+			processData: false,
+            contentType: 'application/json',
+            success: completeRequest,
+            error: function ajaxError(jqXHR, textStatus, errorThrown) {
+                console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
+                console.error('Response: ', jqXHR.responseText);
+                alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
+            }
+        });
+    }
+
+	function requestList(directory) {
+		updateDir(directory);
+		$("#buffer").show();
+		$.ajax({
+			method: 'POST',
+			url: _config.api.invokeUrl + '/ride',
+            headers: {
+                Authorization: authToken,
 			},
-			/*data: JSON.stringify({
-                Dir: 'test',
-            }),*/
+			data: JSON.stringify({
+				Content: 'list',
+				directory
+			}),
 			contentType: 'application/json',
 			success: completeRequest,
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
@@ -113,9 +137,8 @@ var WildRydes = window.WildRydes || {};
     function completeRequest(result) {
         console.log('Response received from API: ', result);
 		if( Object.keys(result).length > 1) {
-			$('#listF').empty()
-			result.Prefixes.forEach(displayListP)
-			result.Files.forEach(displayListF)
+			handleDirView(result)
+			
 		}
 		else{
 			displayUpdate(JSON.stringify(result, null, ' '));
@@ -125,16 +148,19 @@ var WildRydes = window.WildRydes || {};
         $("#buffer").hide();
     }
 
-    // Register click handler for #request button
+
     $(function onDocReady() {
 		
+		$('.toggleDDjs').click(function() {
+			$('#newFileDrop').toggleClass("w3-show")
+		})
 		$('#POSTx').click(handleHidePost);
-        $('#request').click(handleRequestClick);
+		$('#requestText').click(handleRequestClick);
+		$('#requestLocal').click(handleUploadFile)
 		$('#NewFile').click(handleNewFile);
 		$('#Refresh').click(handleGetClick);
-		$('#testtxt').click(function() {
-			console.log( textMem )
-		});
+		$('#UploadFile').change(handleUploadChange);
+
 		$('#x').click(function() {
 			$('#authTokenModal').toggle();
 		});
@@ -150,77 +176,120 @@ var WildRydes = window.WildRydes || {};
                 displayUpdate('You are authenticated.');
                 $('.authToken').text(token);
 				requestList();
+				
             }
         });
 		
 		
         if (!_config.api.invokeUrl) {
             $('#noApiMessage').show();
-        }
-		//zmienić funkcje żeby odpalały się gdy text różni się od textMem
+		}
+		
 		$('#name').on("input", handlePostChanged);
 		$('#POSTtext').on("input", handlePostChanged);
 		
 		//event listener for file list
-		$('#listF').on( "click", "li span", function( event ) {
+		$('#listF').on( "click", "li span", function() {
 			var elem = $( this );
 			if ( elem.is( "[class^='prefix']" ) ) {
-				console.log("handleDirChange")
+				//console.log("handleDirChange")
+				//console.log(dir)
 				handleDirChange(this.id);
+			}else if(elem.is("[class^='back']")) {
+				//console.log(dir)
+				handleDirBack()
 			} else if ( elem.is( "[class^='w3-display-right']" ) ) {
-				handleDelete(this.id)
+				handleDelete(this.id.substr(1))
 			} else {
 				handlePut(this.id)
 			}
 			console.log(elem)
 		});
-		
+		$('#dirHome').click(function() {
+			handleDirChange(undefined)
+		})
+
 		$('#modal').click(function() {
 			$('#authTokenModal').toggle();
 		});
-		
+		$(document).click(function(e) {
+			let $target=$(e.target);
+			if(!$target.closest('.toggleDDjs').length && 
+  			$('#newFileDrop').hasClass("w3-show")) {
+				$('#newFileDrop').toggleClass("w3-show")
+			}
+		})
     });
 	
 	function handleNewFile() {
 		textMem=FileTemp;
 		$('#POST').show();
-		$('#name').val('name.md');
+		$('#POSTtext').show();
+		$('#requestText').removeClass("w3-orange").prop('disabled', false);
+		if(dir!==undefined) {
+			$('#name').val(dir+'name.md');
+		}else {$('#name').val('name.md');}
+		
 		$('#POSTtext').val(FileTemp);
 		$("div").scrollTop(0);
 	}
 	function handleDirChange(name) {
-		console.log(name)
+		//dir=name;
+		requestList(name);
+			dir=name
+	}
+
+	function handleDirBack(){
+		try{
+			dir=dir.slice(0,-1)
+			let pos=dir.lastIndexOf('/')
+			if (pos!=-1) {
+			dir=dir.slice(0,pos)+'/'
+			console.log(dir)
+			} else dir=undefined; 
+		}
+		catch(err){
+			console.log('name puste')
+		}
+		requestList(dir)
 	}
 
 	function handlePut(name) {
 		$('#POST').show();
-		$('#request').removeClass("w3-green").prop('disabled', true);
+		$('#POSTtext').show();
+		$('#requestText').removeClass("w3-orange").prop('disabled', true);
 		requestPut(name);
 		$("div").scrollTop(0);
 	}
 	
 	function handleHidePost() {
-		$('#request').removeClass("w3-green").prop('disabled', true);
+		$('#requestText').removeClass("w3-orange").prop('disabled', true);
 		$('#POST').hide();
+		$('#POSTtext').hide();
+		$('#requestText').show();
+		$('#requestLocal').hide();
 	}
 	function handleDelete(name) {
-		requestDelete(name.substr(1))
+		let c=confirm("Are you sure you want to delete "+name+"?");
+		if(c==true) {
+			requestDelete(name)
+		}
 	}
 	
     function handlePostChanged() {
 		let file=[$('#name').val(), $('#POSTtext').val()];
 		//console.log(file)
 		if(JSON.stringify(file)!=JSON.stringify(textMem)){
-			$('#request').addClass("w3-green").prop('disabled', false);
+			$('#requestText').addClass("w3-orange").prop('disabled', false);
 		}
 		else {
-			$('#request').removeClass("w3-green").prop('disabled', true);
+			$('#requestText').removeClass("w3-orange").prop('disabled', true);
 		}
     }
 	
-    function handleRequestClick(event) {
+    function handleRequestClick(val) {
+		if (!val===undefined) console.log(val)
         var file = {name:document.getElementById("name").value, body:document.getElementById("POSTtext").value};
-        event.preventDefault();
 		requestPost(file);
         console.log(file);
     }
@@ -230,19 +299,66 @@ var WildRydes = window.WildRydes || {};
         $('#updates').append($('<li>' + text + '</li>'));
     }
     function displayListF(text) {
-        $('#listF').append($("<li class='w3-display-container' ><span id='" + text + "'>" + text + "</span><span class='w3-display-right w3-button' id='&times;" + text + "'>&times;</span></li>"));
+        $('#listF').append($("<li class='listubc w3-display-container' ><span id='" + text + "'class='dir-text'><img src='assets/file.svg'class='svg'>" + subDirName(text) + "</span><span class='w3-display-right w3-container del' id='&times;" + text + "'>&times;</span></li>"));
 	}
 	function displayListP(text) {
-		$('#listF').append($("<li class='w3-display-container' ><span id='" + text + "'class='prefix'>" + text + "</span></li>"));
+		$('#listF').append($("<li class='listubc w3-display-container' ><span id='" + text + "'class='prefix dir-text'><img src='assets/dir.svg'class='svg'>" + subDirName(text).slice(0,-1) + "</span></li>"));
 	}
-	function handleGetClick(event) {
+	function displayListB(text) {
+		$('#listF').append($("<li class='listubc w3-display-container' ><span id='" + text + "'class='back dir-text'><img src='assets/back.svg'class='svg'>" + text + "</span></li>"));
+	}
+	function handleGetClick() {
 		requestList();
 	}
 	function handleHome() {
 		document.location.href="/";
 	}
 
-	function testalert() {
-		console.log("test");
+	function handleDirView(result) {
+		$('#listF').empty()
+		let check=$('#DIRECTORY').text();
+		//console.log(dir)
+		if (check!='S3:/') {
+			displayListB('[..]')
+		}
+		result.Prefixes.forEach(displayListP)
+		result.Files.forEach(displayListF)
+	}
+	function updateDir(name){
+		if(name==undefined) {
+			name=''
+		}
+		$('#DIRECTORY').text("S3:/"+name)
+	}
+
+	function subDirName(name){
+		if(dir!==undefined) {
+			//console.log(name.replace(dir,""))
+			return name.replace(dir,"")
+		}else {return name}
+	}
+
+	function handleUploadChange(e){
+		let name=e.target.files[0].name
+		$('#requestText').hide();
+		$('#requestLocal').show();
+		$('#name').val(name);
+		$('#POST').show();
+	}
+	function handleUploadFile(e){
+		console.log(e)
+		var file=e.target.files[0]
+		const reader=new FileReader();
+		reader.readAsArrayBuffer(file)
+		reader.onload= function() {
+			let ui8ta=new Uint8Array(reader.result)
+			let ui8a=Array.from(ui8ta)
+			console.log(reader.result)
+			let data= {Content: 'postF', File:{name: file.name, Body: ui8a}}
+			console.log(JSON.stringify(data))
+			requestPostTest(data)
+		}
+		
+		
 	}
 }(jQuery));

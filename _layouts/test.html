@@ -3,6 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="Content-Language" content="pl" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="assets/style.css" type="text/css" />
   <title>{{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,27 +15,41 @@
 </head>
 
 <body style="overflow:hidden;position:fixed;width:100vw">
-    <div class="w3-border-bottom w3-row w3-bar" style="position:sticky;top:0;">
-        <a id="NewFile" class="w3-bar-item w3-button line-height w3-left">+</span>
-        <a id="Refresh" class="w3-bar-item w3-button line-height w3-left">&#8635;</span>
-        <a id="signOut" class="w3-bar-item w3-button line-height w3-left" href="#signOut">Sign out</a>
+    <div class="w3-row w3-bar w3-bottombar" style="position:sticky;top:0;">
+        <a id="newFileMenu" class=" toggleDDjs w3-bar-item w3-button line-height w3-left w3-dropdown-click">+</a>
+            
+        <a id="Refresh" class="w3-bar-item w3-button line-height w3-left">&#8635;</a>
         <a id="home" class="w3-bar-item w3-button line-height w3-left">Home</a>
+
+        <a id="signOut" class="w3-bar-item w3-button line-height w3-right" href="#signOut">Sign out</a>
         <a id="modal" class="w3-bar-item w3-button line-height w3-right w3-disabled" href="#modal">Auth Token</a>
-        <a id="testtxt" class="w3-bar-item w3-button line-height w3-right">memtxt</a>
-        <div id="buffer" class='loader w3-bar-item line-height w3-right'></div>
+        <div id="buffer" class='w3-bar-item line-height w3-right'><img src="assets/ajax-loader.gif"></img></div>
+        
+    </div>
+    <div id="newFileDrop"class="w3-dropdown-content w3-bar-block w3-border-right w3-border-bottom">
+        <a id="NewFile"href="#" class="toggleDDjs w3-bar-item w3-button">New file</a>
+        <div class="LocalFile w3-bar-item w3-button toggleDDjs">
+            <input type="file" id="UploadFile">
+            <a class=" ">Upload</a>
+        </div>
     </div>
     <div class="w3-row" style="height:100vh;display:flex;">
-        <div class="w3-col w3-border-right" style="width:80%;overflow-y:auto;"> 
-            <div id="POST" class="info panel panel-default" style="display: none;">
-                <div class="panel-heading">Name
+        <div class="w3-col w3-border-right " style="width:75%;overflow-y:auto;">
+            <div class=" w3-border-bottom">
+                <ol class="w3-ul"><li><img id="dirHome" src="assets/home.svg"class="svg"></img>
+                <span id="DIRECTORY"class=""></span></li></ol>
+            </div> 
+            <div class="w3-container">
+                <div id="POST" class="w3-row w3-bar w3-padding-8" style="display: none;">Name
                     <input type="text" id="name" value="nazwa.md">
-                    <button id="request" class="btn btn-primary">Upload</button>
-                    <span class='w3-button' id='POSTx'>&times;</span>
+                    <button id="requestText">Upload</button>
+                    <button id="requestLocal"style="display: none;">Upload Local</button>
+                    <span class='del w3-padding' id='POSTx'>&times;</span>
                 </div>
-                <textarea id="POSTtext" rows="20" cols="60"></textarea>
+                <textarea id="POSTtext" rows="20" cols="60"style="display: none;"></textarea>
             </div>
 
-            <ol class='w3-ul' style='width:50%' id="listF">
+            <ol class='w3-ul ' style='width:65%' id="listF">
             </ol>
             <div id="noApiMessage" class="configMessage" style="display: none;">
                 <div class="backdrop"></div>
@@ -64,8 +79,9 @@
 
 
         </div>
-        <div class="w3-col w3-border-left" style="width:20%;overflow-y:auto;">
-            <ul id="updates">
+        <div class="w3-col w3-border-left w3-container" style="width:25%;overflow-y:auto;">
+            <p>Responses:</p>
+            <ul id="updates"class="">
             </ul>
         </div>
     </div>
@@ -83,5 +99,5 @@
     <script src="js/vendor/amazon-cognito-identity.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/cognito-auth.js"></script>
-	<script src="js/test.js"></script>
+    <script src="js/test.js"></script>
 </html>
