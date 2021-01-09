@@ -302,7 +302,7 @@ var WildRydes = window.WildRydes || {};
         $('#listF').append($("<li class='listubc w3-display-container' ><span id='" + text + "'class='dir-text'><img src='assets/file.svg'class='svg'>" + subDirName(text) + "</span><span class='w3-display-right w3-container del' id='&times;" + text + "'>&times;</span></li>"));
 	}
 	function displayListP(text) {
-		$('#listF').append($("<li class='listubc w3-display-container' ><span id='" + text + "'class='prefix dir-text'><img src='assets/dir.svg'class='svg'>" + subDirName(text).slice(0,-1) + "</span></li>"));
+		$('#listF').append($("<li class='listubc w3-display-container' ><span id='" + text + "'class='prefix dir-text'><img src='/assets/dir.svg'class='svg'>" + subDirName(text).slice(0,-1) + "</span></li>"));
 	}
 	function displayListB(text) {
 		$('#listF').append($("<li class='listubc w3-display-container' ><span id='" + text + "'class='back dir-text'><img src='assets/back.svg'class='svg'>" + text + "</span></li>"));
