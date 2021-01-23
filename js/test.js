@@ -6,7 +6,7 @@ var WildRydes = window.WildRydes || {};
     var authToken;
 	const FileTemp = '---\ntitle: name\nlayout: default\n---';
 	var textMem;
-	var dir;
+	var dir, file;
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
             authToken = token;
@@ -143,8 +143,9 @@ var WildRydes = window.WildRydes || {};
 		else{
 			displayUpdate(JSON.stringify(result, null, ' '));
 			handleHidePost();
-			requestList();
+			requestList(dir);
 		}
+		file=undefined
         $("#buffer").hide();
     }
 
@@ -289,7 +290,7 @@ var WildRydes = window.WildRydes || {};
 	
     function handleRequestClick(val) {
 		if (!val===undefined) console.log(val)
-        var file = {name:document.getElementById("name").value, body:document.getElementById("POSTtext").value};
+        let file = {name:document.getElementById("name").value, body:document.getElementById("POSTtext").value};
 		requestPost(file);
         console.log(file);
     }
@@ -339,22 +340,25 @@ var WildRydes = window.WildRydes || {};
 	}
 
 	function handleUploadChange(e){
-		let name=e.target.files[0].name
+		file=e.target.files[0]
+		console.log(dir)
+		if(dir!==undefined) {
+			$('#name').val(dir+file.name);
+		}else {$('#name').val(file.name);}
 		$('#requestText').hide();
 		$('#requestLocal').show();
-		$('#name').val(name);
 		$('#POST').show();
 	}
-	function handleUploadFile(e){
-		console.log(e)
-		var file=e.target.files[0]
+	function handleUploadFile(){
+		file.name=$('#name').val();
+		console.log(file)
 		const reader=new FileReader();
 		reader.readAsArrayBuffer(file)
 		reader.onload= function() {
 			let ui8ta=new Uint8Array(reader.result)
 			let ui8a=Array.from(ui8ta)
 			console.log(reader.result)
-			let data= {Content: 'postF', File:{name: file.name, Body: ui8a}}
+			let data= {Content: 'postF', File:{name: $('#name').val(), Body: ui8a}}
 			console.log(JSON.stringify(data))
 			requestPostTest(data)
 		}
